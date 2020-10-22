@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Css is used for styling and design -->
- <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
 <div class="container">
@@ -14,7 +15,7 @@
         <div class="col">
             <img class="profile-icon" src="./assets/MI.png" alt="mi" height="150px" width="150px">
        
-        <span class="name" id="team-1-name">Mumbai Indians</span>
+        <span class="name" id="team-1-name"></span>
         <div class="row round-runs" id="team-1-round-runs">
             <span class="col">-</span>
             <span class="col">-</span>
@@ -23,19 +24,19 @@
             <span class="col">-</span>
             <span class="col">-</span>
         </div>
-    </div>
+        </div>
         <div class="col">
             <div class="row score">
-                <span id="team-1-score">0</span>
+                <span id="team-1-score"></span>
                 <span>-</span>
-                <span id="team---score">0</span>
+                <span id="team-2-score"></span>
             </div>
         </div>
         <div class="col">
           
             <img class="profile-icon" src="./assets/csk.png" alt="csk" height="150px" width="150px">
        
-        <span class="name" id="team-2-name">CSK</span>
+        <span class="name" id="team-2-name"></span>
         <div class="row round-runs" id="team-2-round-runs">
             <span class="col">-</span>
             <span class="col">-</span>
@@ -48,8 +49,10 @@
      
     </div>
     <div class="row">
-        <button id="strike-button">CSK STRIKE</button>
+        <button id="strike-button"></button>
     </div>
 </div>
+<!-- include the javascript library -->
+<script src="./app.js"></script>
 </body>
 </html>
