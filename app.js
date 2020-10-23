@@ -48,7 +48,21 @@ console.log(turn);
 updateButtonText =()=>{
     var button = document.getElementById('strike-button');
     console.log(button);
+    var result = document.getElementById('result');
+    result.style.visibility="";
+    console.log(result);
     button.textContent = `${turn===1?team1.name: team2.name} Strike`;
+    // check whether the game is over
+    if(team1.runs.length ==6 && team2.runs.length==6){
+    button.remove();
+    //check if the match is draw
+    result.textContent = team1.score === team2.score? `It's a draw`:`${team1.score > team2.score? team1.name:team2.name} Wins`;
+}
+else{
+ // check strike is over
+ turn = team1.runs.length === 6?2:team2.runs.length === 6?1:turn;  
+}
+
 }
 // Es6 notation of writing a function
 updateScore = ()=>{
@@ -56,6 +70,7 @@ updateScore = ()=>{
     document.getElementById('team-1-score').textContent = team1.score;
     // update team-2 score
     document.getElementById('team-2-score').textContent = team2.score;
+    updateRuns();
 }
 // Traditional way of writing
 function updateName(){
@@ -70,3 +85,45 @@ function updateName(){
 //     // update team-2 name
 //     document.getElementById('team-2-name').textContent = team2.name;
 // }
+
+// Handle the button click action
+var handleStrikeButtonClick = ()=>{
+    console.log("button click works");
+    var runs = score[Math.floor(Math.random()*score.length)];
+    console.log(runs);
+    runs = runs === 5 ? 'W':runs;
+    console.log(runs);
+    // check which team is batting first
+    if(turn===1)
+    {
+        team1.runs.push(runs);
+        team1.score = calculateScore(team1.runs); // Update team score
+        console.log(team1.score);
+    }
+    else
+    {
+        team2.runs.push(runs);
+        team2.score = calculateScore(team2.runs); // Update team score
+        console.log(team2.score);
+    }
+    updateButtonText();
+    updateScore();
+}
+
+
+var calculateScore = (runs)=>{
+    return runs.map(run =>{
+        return run =='W'?0:run;
+    }).reduce((total,runs)=>total + runs);
+}
+
+updateRuns = ()=>{
+    var teamOneRunsElement = document.getElementById('team-1-round-runs').children;
+    var teamTwoRunsElement =  document.getElementById('team-2-round-runs').children;
+    team1.runs.forEach((run,index)=>{
+        teamOneRunsElement[index].textContent = run;
+    })
+    team2.runs.forEach((run,index)=>{
+        teamTwoRunsElement[index].textContent = run;
+    });
+};
